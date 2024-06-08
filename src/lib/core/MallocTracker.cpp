@@ -53,7 +53,7 @@ void MallocTracker::onAlloc(StackIp & ip,size_t ptr, size_t size)
 	#ifdef SYS_getcpu
 		syscall(SYS_getcpu, &cpu_id, &node_id);
 	#endif
-	fprintf(stdout, "[MALLOC]: %p TID : %d FROM NODE %d(%d) to %d\n", (void*)ptr, OS::getTID(), node_id, cpu_id, OS::getNumaOfPage(ptr));
+	// fprintf(stdout, "[MALLOC]: %p TID : %d FROM NODE %d(%d) to %d\n", (void*)ptr, OS::getTID(), node_id, cpu_id, OS::getNumaOfPage(ptr));
 	
 	//reg to page table
 	pageTable->regAllocPointer(ptr,size,infos);
@@ -90,7 +90,7 @@ void MallocTracker::onFree(size_t ptr)
 	#ifdef SYS_getcpu
 		syscall(SYS_getcpu, &cpu_id, &node_id);
 	#endif
-	fprintf(stdout, "[FREE]: %p TID : %d FROM NODE %d(%d) to %d\n", (void*)ptr, OS::getTID(), node_id, cpu_id, OS::getNumaOfPage(ptr));
+	// fprintf(stdout, "[FREE]: %p TID : %d FROM NODE %d(%d) to %d\n", (void*)ptr, OS::getTID(), node_id, cpu_id, OS::getNumaOfPage(ptr));
 	
 	//free into page table
 	pageTable->freeAllocPointer(ptr,infos->size,infos);

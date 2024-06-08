@@ -333,20 +333,21 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 	int remote = (node_id != (unsigned int)pageNode) ? 1 : 0;
 	if (pageNode == -2) {
 		if (write)
-			fprintf(stdout, "[PAGEFAULT (W)] : %p TID : %d FROM NODE %d(%d)\n", (void*)addr, this->tid, node_id, cpu_id);
+			fprintf(stdout, "%d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
+			
 		else
-			fprintf(stdout, "[PAGEFAULT (R)] : %p TID : %d FROM NODE %d(%d)\n", (void*)addr, this->tid, node_id, cpu_id);	
+			fprintf(stdout, "%d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
 	} else {
 		if (remote) {
 				if (write)
-					fprintf(stdout, "[REMOTE MEM ACCESS (W)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+					fprintf(stdout, "%d %p %d %d %d %d\n", 2, (void*)addr, this->tid, node_id, cpu_id, pageNode);
 				else
-					fprintf(stdout, "[REMOTE MEM ACCESS (R)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+					fprintf(stdout, "%d %p %d %d %d %d\n", 2, (void*)addr, this->tid, node_id, cpu_id, pageNode);
 		} else {
 			if (write)
-				fprintf(stdout, "[LOCAL MEM ACCESS (R)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+				fprintf(stdout, "%d %p %d %d %d %d\n", 3, (void*)addr, this->tid, node_id, cpu_id, pageNode);
 			else
-				fprintf(stdout, "[LOCAL MEM ACCESS (R)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+				fprintf(stdout, "%d %p %d %d %d %d\n", 3, (void*)addr, this->tid, node_id, cpu_id, pageNode);
 		}
 	}
 	
