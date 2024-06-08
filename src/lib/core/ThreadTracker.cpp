@@ -7,8 +7,11 @@
 *****************************************************/
 
 /********************  HEADERS  *********************/
+#include <sched.h>
 #include <sys/mman.h>
 #include <cassert>
+#include <sys/syscall.h>
+#include <unistd.h>
 #include "ThreadTracker.hpp"
 #include "../common/Debug.hpp"
 #include "../portability/OS.hpp"
@@ -249,7 +252,7 @@ void ThreadTracker::onAccess(size_t ip,size_t addr,bool write,bool skip)
 void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 {
 	//printf("Access %p => %p\n",(void*)ip,(void*)addr);
-
+	// assert(0);
 	//check cache, if contain data, just ignore
 	if (hasCpuCache)
 		if (this->cpuCache->onMemoryAccess(addr))
@@ -272,6 +275,16 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 	bool isWriteFirstTouch = false;
 	size_t touchedPages = 1;
 
+	unsigned int cpu_id; 
+	unsigned int node_id;
+	#ifdef SYS_getcpu
+		syscall(SYS_getcpu, &cpu_id, &node_id);
+	#endif
+	// int cpu_id = sched_getcpu();
+	// int* nodeMap = this->topo->getNumaMap();
+	// int node_id = nodeMap[cpu_id];
+
+		
 	//if not defined use move pages
 	if (pageNode <= NUMAPROF_DEFAULT_NUMA_NODE)
 	{
@@ -316,6 +329,27 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 		if (pageNode >= 0)
 			process->onAfterFirstTouch(pageNode,touchedPages);
 	}
+	
+	int remote = (node_id != (unsigned int)pageNode) ? 1 : 0;
+	if (pageNode == -2) {
+		if (write)
+			fprintf(stdout, "[PAGEFAULT (W)] : %p TID : %d FROM NODE %d(%d)\n", (void*)addr, this->tid, node_id, cpu_id);
+		else
+			fprintf(stdout, "[PAGEFAULT (R)] : %p TID : %d FROM NODE %d(%d)\n", (void*)addr, this->tid, node_id, cpu_id);	
+	} else {
+		if (remote) {
+				if (write)
+					fprintf(stdout, "[REMOTE MEM ACCESS (W)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+				else
+					fprintf(stdout, "[REMOTE MEM ACCESS (R)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+		} else {
+			if (write)
+				fprintf(stdout, "[LOCAL MEM ACCESS (R)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+			else
+				fprintf(stdout, "[LOCAL MEM ACCESS (R)] : %p TID : %d FROM NODE %d(%d) to %d\n", (void*)addr, this->tid, node_id, cpu_id, pageNode);
+		}
+	}
+	
 
 	//if we skip we take care of the first touch (previous lines) but we do not account
 	if (skip)

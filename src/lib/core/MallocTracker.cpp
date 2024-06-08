@@ -9,6 +9,8 @@
 /*******************  HEADERS  **********************/
 #include "MallocTracker.hpp"
 #include "ProcessTracker.hpp"
+#include <sys/syscall.h>
+#include <unistd.h>
 
 /*******************  NAMESPACE  ********************/
 namespace numaprof
@@ -46,10 +48,12 @@ void MallocTracker::onAlloc(StackIp & ip,size_t ptr, size_t size)
 	infos->size = size;
 	infos->stats = &(instructions[ip]);
 
-	//debug
-	#ifdef NUMAPROF_TRACE_ALLOCS
-		printf("TRACE: tracker.onAlloc(ip,%p,%lu);\n",(void*)ptr,size);
+	unsigned int cpu_id; 
+	unsigned int node_id;
+	#ifdef SYS_getcpu
+		syscall(SYS_getcpu, &cpu_id, &node_id);
 	#endif
+	fprintf(stdout, "[MALLOC]: %p TID : %d FROM NODE %d(%d) to %d\n", (void*)ptr, OS::getTID(), node_id, cpu_id, OS::getNumaOfPage(ptr));
 	
 	//reg to page table
 	pageTable->regAllocPointer(ptr,size,infos);
@@ -80,6 +84,13 @@ void MallocTracker::onFree(size_t ptr)
 	#ifdef NUMAPROF_TRACE_ALLOCS
 		printf("TRACE: tracker.onFree(%p);\n",(void*)ptr);
 	#endif
+
+	unsigned int cpu_id; 
+	unsigned int node_id;
+	#ifdef SYS_getcpu
+		syscall(SYS_getcpu, &cpu_id, &node_id);
+	#endif
+	fprintf(stdout, "[FREE]: %p TID : %d FROM NODE %d(%d) to %d\n", (void*)ptr, OS::getTID(), node_id, cpu_id, OS::getNumaOfPage(ptr));
 	
 	//free into page table
 	pageTable->freeAllocPointer(ptr,infos->size,infos);
