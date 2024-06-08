@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Threads{% endblock %}
+{% block import %}
+<script language="javascript" src="/static/js/threads.js"></script>
+{% endblock %}
+{% block content %}
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Thread binding</div>
+			<table class='table table-bordered'>
+				<tbody id="numaTopology">
+					<tr>
+						<th>Numa node</th>
+						<th>Threads</th>
+					</tr>
+				<tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">First touch</div>
+			<div class="panel-body" id="threadsFirstTouch">
+				<svg></svg>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Memory access</div>
+			<div class="panel-body" id="threadsAccess">
+				<svg></svg>
+			</div>
+		</div>
+	</div>
+{% endblock %}

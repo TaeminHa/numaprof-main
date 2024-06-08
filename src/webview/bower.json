@@ -1,0 +1,26 @@
+{
+  "name": "numaprof-webview",
+  "authors": [
+    "Sebastien Valat <sebastien.valat@gmail.com>"
+  ],
+  "description": "Webview for numaprof",
+  "main": "",
+  "license": "CeCILL-C",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.4.1",
+    "nvd3": "^1.8.5",
+    "d3-tip": "=0.6.7",
+    "mustache.js": "mustache#^2.3.0",
+    "jquery-bootpag": "^1.0.7"
+  }
+}

@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block title %}Sources{% endblock %}
+{% block import %}
+	{% block preset %}
+		<script language="javascript">
+			gblIsAsm = false;
+		</script>
+	{% endblock %}
+<script language="javascript" src="/static/js/prism.js"></script>
+<script language="javascript" src="/static/js/source-editor.js"></script>
+<script language="javascript" src="/static/js/metrics.js"></script>
+<script language="javascript" src="/static/js/selector.js"></script>
+<script language="javascript" src="/static/js/sources.js"></script>
+<script language="javascript" src="/static/bower/mustache.js/mustache.min.js"></script>
+<script language="javascript" src="/static/bower/jquery-bootpag/lib/jquery.bootpag.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/sources.css">
+<link rel="stylesheet" type="text/css" href="/static/css/prism.css">
+<style type='text/css'>
+	.annotation-details th {
+		text-align:center;
+	}
+	
+	.annotation-details td {
+		padding:20px;
+	}
+	
+	#numaprof-source-filename {
+		border:solid 1px lightgray;
+		width:fit-content;
+		margin:0px;
+		border-top-right-radius: 9px;
+		border-top-left-radius: 9px;
+		padding:3px;
+		padding-left:10px;
+		padding-right:10px;
+		background-color:#F7F7F7;
+	}
+
+	.source-popover-details td {
+		text-align:right;
+	}
+	
+</style>
+{% endblock %}
+{% block content %}
+	<div id='svg-buffer' style='display:none' width='100px' height='100px'><svg/></div>
+	<div class="row">
+		<div class="col-sm-5 col-md-4 col-lg-3 sidebar">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" id="numaprof-ratio-select" title='Show ratio to reference (max or sum) or absolute value.'><b>%</b></button>
+				<!--<button type="button" class="btn btn-default" title='Show inclusive or exclusive costs.'><b>I</b></button>-->
+				<!-- 						<span class='dropdown'> -->
+				<button type="button" class="btn btn-default dropdown-toggle" type='button' data-toggle="dropdown" id='dropdownMenu1' title="Select metric.">
+					<span id="numaprof-selected-metric">METRIC</span>
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" id='numaprof-selector-list' role='menu' aria-labelledby='dropdownMenu1'>
+					<!--<li><a href="">NAME</a></li>-->
+				</ul>
+				<!-- 						</span> -->
+			</div>
+			<div class="input-group">
+				<input class="form-control col-lg-8" type="text" placeholder="Search" id="numaprof-input-search"></input>
+			</div>
+			<ul class='nav nav-sidebar' id='numaprof-func-list' class="compact">
+				<li id='numaprof-func-list-entry'>
+					<a href='' data-toggle='popover' data-content='{{ longName }}'>
+						<div class='progress'>
+							<div class='progress-bar' role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: {{ ratio }}%;'>
+								<span class='sr-only'>{{ ratio }}% Complete</span>
+							</div>
+						</div>
+						<span class='size'>
+							{{value}}
+							<div class='progress-fg' style='width: {{ ratio }}%;'></div>
+							<div class='progress-bg'></div>
+						</span>
+						<span class='func'>{{ shortName }}</span>
+					</a>
+				</li>
+			</ul>
+			<div id="paging"></div>
+		</div>
+		
+		<!--<div class="panel panel-default">
+			<div class="panel-heading" id='numaprof-source-filename'>Topology</div>
+			<div id='numaprof-source-editor'></div></div>
+		</div>-->
+		
+		<span id='numaprof-source-filename'></span>
+		<div id='numaprof-source-editor'></div></div>
+	</div>
+{% endblock %}

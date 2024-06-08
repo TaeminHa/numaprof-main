@@ -1,0 +1,115 @@
+#!/bin/sh
+######################################################
+#            PROJECT  : numaprof                     #
+#            VERSION  : 1.1.5                        #
+#            DATE     : 06/2023                      #
+#            AUTHOR   : Sébastien Valat              #
+#            LICENSE  : CeCILL-C                     #
+######################################################
+
+######################################################
+#set project name
+cfg_set_projet "numaprof"
+
+######################################################
+#test
+cfg_add_enable_option --name='test' \
+						--on='-DENABLE_TESTS=${ON}' \
+						--doc='Disable unit tests' \
+						--invert-help
+#gcc test coverage
+cfg_add_enable_option --name='gcc-coverage'  \
+						--on='-DENABLE_GCC_COVERAGE=${ON}' \
+						--doc='Enable GCC option to generate test coverage of the lib' \
+#junit xml out
+cfg_add_enable_option --name='junit-output'  \
+						--on='-DENABLE_JUNIT_OUTPUT=${ON}' \
+						--doc='Save test output in JUnit format (only in self-test mode)' 
+#valgrind
+cfg_add_enable_option --name='valgrind' \
+						--on='-DENABLE_VALGRIND=${ON}' \
+						--doc='Enable running unit tests into valgrind to generate reports'
+#jenkins full features
+cfg_add_enable_option --name='jenkins' \
+						--on-enable-inherit='--enable-valgrind --enable-junit-output --enable-debug "CXXFLAGS=-Wall -fprofile-arcs -ftest-coverage"' \
+						--doc='Enable all checking modes (unit, valgrind, coverage...)' \
+						--only='enable'
+#webview
+cfg_add_enable_option --name='webview' \
+						--on='-DENABLE_WEBVIEW=${ON}' \
+						--doc='Disable installation of webview (-DENABLE_WEBVIEW=no)'
+
+######################################################
+cfg_add_with_option --name='lib-suffix' \
+						--doc='Used to force suffix for lib directory eg. lib64. [empty]' \
+						--var='LIB_SUFFIX' \
+						--only='with' \
+						--type='dir'
+
+cfg_add_with_option --name='mpicxx' \
+						--doc='Define the MPI compiler to use [mpicxx]' \
+						--var='MPI_CXX_COMPILER'
+
+cfg_add_with_option --name='hwloc' \
+						--doc='Define prefix to find hwloc [/usr]' \
+						--var='HWLOC_PREFIX'
+
+cfg_add_with_option --name='pintool' \
+						--doc='Define prefix of pintool (REQUIRED)' \
+						--var='PINTOOL_PREFIX'
+
+cfg_add_with_option --name='numactl' \
+						--doc='Define prefix of numactl/libnuma [/usr]' \
+						--var='NUMACTL_PREFIX'
+
+######################################################
+#If we want to document extra options
+#CFG_CUSTOM_HELP="My custom options:"
+
+######################################################
+# here we can parse our own options if we want
+# Vars available are :
+#  - $arg : full argument (eg. --with-gcc=gcc)
+#  - $val : value after first '=', egg 'gcc'
+#  - $ON $OFF, $ENABLE, $DISABLE, $WIDTH, $WITHOUT
+#cfg_parse_custom_opts()
+#{
+#	return 1
+#}
+
+######################################################
+#pre check to ease error messages
+#All cmake vars are loaded in memory as OPT_* (OPT_CMAKE_C_FLAGS)
+cfg_custom_pre_check()
+{
+	alt=1
+	if [ -z "$OPT_ENABLE_WEBVIEW" ] || [ "$OPT_ENABLE_WEBVIEW" = "ON" ]
+	then
+		if [ ! -d ${CFG_SOURCE_DIR}/src/webview/bower_components ] || [ ! -d ${CFG_SOURCE_DIR}/src/webview/deps ]
+		then
+			echo "....You cloned the master branch, need to download GUI dependencies !"
+			echo "....checking deps..."
+			miss=""
+			if ! which pip3 > /dev/null
+			then
+				cfg_error "MISSING Python 'pip3' command required to fetch the webview server dependencies, please install before proceeding or download a release archive instead of using master branch"
+				miss="true"
+			fi
+			if ! which npm > /dev/null
+			then
+				cfg_error "MISSING Nodejs 'npm' command required to fetch the webview client dependencies, please install 'nodejs' before proceeding or download a release archive instead of using master branch"
+				echo
+				cfg_hint "Alternative ${alt}: you can download a release archive of numaprof which already contain all the javascript files and do not need NodeJS."
+				miss="true"
+				alt=$(($alt + 1))
+			fi
+			
+			if [ ! -z "$miss" ]; then
+				echo
+				cfg_hint "Alternative ${alt}: if you cannot install them you can disable the webview with --disable-webview"
+				echo
+				cfg_exit 1
+			fi
+		fi
+	fi
+}

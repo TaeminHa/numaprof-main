@@ -1,0 +1,36 @@
+#!/bin/bash
+######################################################
+#            PROJECT  : numaprof                     #
+#            VERSION  : 1.1.5                        #
+#            DATE     : 06/2023                      #
+#            AUTHOR   : Valat Sébastien  - CERN      #
+#            LICENSE  : CeCILL-C                     #
+######################################################
+
+######################################################
+if [ ! -f ${HOME}/.numaprof/htpasswd ]; then
+	echo "==========================================================="
+	echo -e "\e[31mYou first need to define a user/password to secure the GUI.\e[00m"
+	read -p "User: " user
+	@CMAKE_INSTALL_PREFIX@/bin/numaprof-passwd $user
+	echo "==========================================================="
+fi
+
+######################################################
+function forwardSigterm()
+{
+	#echo "Send KILL to python $CHILD !"
+	kill $CHILD
+}
+
+######################################################
+trap forwardSigterm SIGTERM
+trap forwardSigterm SIGINT
+
+######################################################
+#export FLASK_APP=server.py
+export PYTHONPATH=@WEBVIEW_PATH@/deps/:$PYTHONPATH
+python3 @WEBVIEW_PATH@/server.py "$@" &
+CHILD=$!
+wait $!
+exit $?
