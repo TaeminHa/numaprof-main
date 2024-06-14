@@ -12,6 +12,7 @@
 /********************  HEADERS  *********************/
 #include <map>
 #include <list>
+#include <string>
 #include "../../../extern-deps/from-htopml/json/ConvertToJson.h"
 #include "ProcessTracker.hpp"
 #include "MallocTracker.hpp"
@@ -182,6 +183,8 @@ class ThreadTracker
 		CpuCache * cpuCache;
 		/** To gain one function call if cache simulator is set to dummy or not **/
 		bool hasCpuCache;
+		/* Buffer to store Mem access information before writing to IO */
+		std::string buffer;
 };
 
 /*******************  FUNCTION  *********************/

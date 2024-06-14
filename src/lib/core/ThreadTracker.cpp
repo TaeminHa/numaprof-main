@@ -9,6 +9,7 @@
 /********************  HEADERS  *********************/
 #include <iostream>
 #include <sched.h>
+#include <fstream>
 #include <sys/mman.h>
 #include <cassert>
 #include <sys/syscall.h>
@@ -19,6 +20,8 @@
 #include "../common/Options.hpp"
 #include "../caches/CpuCacheBuilder.hpp"
 #include "linux/mempolicy.h"
+
+#define BUFFER_SIZE 4194304 // 4MB of text
 
 /*******************  NAMESPACE  ********************/
 namespace numaprof
@@ -75,6 +78,9 @@ ThreadTracker::ThreadTracker(ProcessTracker * process)
 	this->cpuCache = CpuCacheBuilder::buildCache(cacheType,process->getCpuCacheLayout());
 	this->cpuCache->onThreadMove(cpuBindList);
 	this->hasCpuCache = !(cacheType == "dummy");
+	
+	// reserve 1MB for mem access buffer
+	this->buffer.reserve(BUFFER_SIZE);
 }
 
 /*******************  FUNCTION  *********************/
@@ -141,6 +147,15 @@ void ThreadTracker::flush(void)
 	flushAccessBatch();
 	this->process->mergeInstruction(instructions);
 	this->allocTracker.flush(process);
+	
+	// Flush all buffered mem access info to IO File when thread exiting
+	std::string filename = "output_" + std::to_string(this->tid) + ".txt";
+	std::ofstream outFile(filename, std::ios::app);
+	if (outFile.is_open()) {
+		outFile << this->buffer;
+		outFile.close();
+	}
+	buffer.clear();
 }
 
 /*******************  FUNCTION  *********************/
@@ -332,22 +347,27 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 	}
 	
 	int remote = (node_id != (unsigned int)pageNode) ? 1 : 0;
+
 	if (pageNode == -2) {
-		if (write)
-			fprintf(stdout, "np %d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
-		else
-			fprintf(stdout, "np %d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
+		// if (write)
+		// 	// fprintf(stdout, "np %d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
+		// else
+		// 	// fprintf(stdout, "np %d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
 	} else {
 		if (remote) {
-				if (write)
-					fprintf(stdout, "np %d %p %d %d %d %d\n", 2, (void*)addr, this->tid, node_id, cpu_id, pageNode);
-				else
-					fprintf(stdout, "np %d %p %d %d %d %d\n", 2, (void*)addr, this->tid, node_id, cpu_id, pageNode);
+			this->buffer.append("R");
 		} else {
-			if (write)
-				fprintf(stdout, "np %d %p %d %d %d %d\n", 3, (void*)addr, this->tid, node_id, cpu_id, pageNode);
-			else
-				fprintf(stdout, "np %d %p %d %d %d %d\n", 3, (void*)addr, this->tid, node_id, cpu_id, pageNode);
+			this->buffer.append("R");
+		}
+		if (this->buffer.size() >= BUFFER_SIZE) {
+			std::string filename = "/users/taeminha/results/output_" + std::to_string(this->tid) + ".txt";
+			std::ofstream outFile(filename, std::ios::app);
+			if (outFile.is_open()) {
+				// std::cout << "Flushed IO " << this->buffer.size() << std::endl;
+				outFile << this->buffer;
+				outFile.close();
+			}
+			buffer.clear();
 		}
 	}
 	
