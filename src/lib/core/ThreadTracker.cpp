@@ -346,7 +346,6 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 			process->onAfterFirstTouch(pageNode,touchedPages);
 	}
 	
-	int remote = (node_id != (unsigned int)pageNode) ? 1 : 0;
 
 	if (pageNode == -2) {
 		// if (write)
@@ -354,10 +353,11 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 		// else
 		// 	// fprintf(stdout, "np %d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
 	} else {
+		int remote = (node_id != (unsigned int)pageNode) ? 1 : 0;
 		if (remote) {
 			this->buffer.append("R");
 		} else {
-			this->buffer.append("R");
+			this->buffer.append("L");
 		}
 		if (this->buffer.size() >= BUFFER_SIZE) {
 			std::string filename = "/users/taeminha/results/output_" + std::to_string(this->tid) + ".txt";
