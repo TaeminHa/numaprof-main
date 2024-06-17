@@ -21,7 +21,7 @@
 #include "../caches/CpuCacheBuilder.hpp"
 #include "linux/mempolicy.h"
 
-#define BUFFER_SIZE 4194304 // 4MB of text
+#define BUFFER_SIZE 8388608 // 8MB of text
 
 /*******************  NAMESPACE  ********************/
 namespace numaprof
@@ -360,7 +360,7 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 			this->buffer.append("L");
 		}
 		if (this->buffer.size() >= BUFFER_SIZE) {
-			std::string filename = "/users/taeminha/results/output_" + std::to_string(this->tid) + ".txt";
+			std::string filename = "/mydata/results/output_" + std::to_string(this->tid) + ".txt";
 			std::ofstream outFile(filename, std::ios::app);
 			if (outFile.is_open()) {
 				// std::cout << "Flushed IO " << this->buffer.size() << std::endl;

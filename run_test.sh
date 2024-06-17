@@ -1,3 +1,5 @@
+#!/bin/bash
+
 values=(20000 30000 40000 50000 60000)
 scan_period_max_value=(50000 40000 30000 20000 1000)
 scan_size_value=(64 128 256 512 1024)
@@ -45,6 +47,7 @@ restore_default() {
 
 run_test() {
     local bench=$1
+    # local extensions=$(echo "$bench" | cut -d'.' -f2)
     # delete output.txt because it's too big
     # rm /users/taeminha/numaprof/build/output.txt
     # pipe mem access patterns to output.txt file
@@ -52,9 +55,9 @@ run_test() {
     # mpiexec --allow-run-as-root -n 16 /users/taeminha/numaprof/build/benchmarks/mg.C.x >> results.txt
     # mpiexec --allow-run-as-root -n 16 /users/taeminha/numaprof/build/benchmarks/mg.C.x >> /users/taeminha/numaprof/build/output.txt
     cd /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000 
-    /users/taeminha/numaprof/build/bin/numaprof /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000/xz_s_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0
-    # count # of remote accesses and pipe to results.txt
+    # /users/taeminha/numaprof/build/bin/numaprof /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000/xz_s_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0
     # python3 /users/taeminha/numaprof/print_result.py >> results_$i.txt
+    /users/taeminha/numaprof/build/bin/numaprof /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000/cactuBSSN_s_base.taemin_numa-m64 spec_test.par
     # remove webview file created by numaprof
     # rm /users/taeminha/numaprof/build/numaprof-*
 }
@@ -71,6 +74,10 @@ move_output() {
 # rm results_*.txt
 # rm /users/taeminha/numaprof/output_*.txt
 # rm -rf /users/taeminha/numaprof/iteration_*
+
+
+start_time=$(date +"%Y-%m-%d %H:%M:%S")
+
 
 mkdir /mydata/results
 benchmark=$1
@@ -176,6 +183,14 @@ for i in {1..5}; do
         move_output $i numa_balancing_scan_period_adjust_threshold_$value $benchmark
     done
 done
+
+rm /mydata/resutls/$benchmark/df.txt
+rm /mydata/results/$benchmark/results.txt
+sudo python3 print_result $benchmark
+
+#notify completion of job through email
+end_time=$(date +"%Y-%m-%d %H:%M:%S")
+echo "Bench: $benchmark Start: $start_time End: $end_time" | mail -s "Finished NUMAPROF" taemin.ha@utexas.edu
 
 # restore_default
 # for i in {1..10}
