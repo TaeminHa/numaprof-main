@@ -11,6 +11,8 @@
 #include "ProcessTracker.hpp"
 #include <sys/syscall.h>
 #include <unistd.h>
+#include <string>
+#include <fstream>
 
 /*******************  NAMESPACE  ********************/
 namespace numaprof
@@ -53,6 +55,12 @@ void MallocTracker::onAlloc(StackIp & ip,size_t ptr, size_t size)
 	#ifdef SYS_getcpu
 		syscall(SYS_getcpu, &cpu_id, &node_id);
 	#endif
+//	std::string filename = "/mydata/results/output_" + std::to_string(OS::getTID()) + ".txt";
+//	std::ofstream outFile(filename, std::ios::app);
+//	if (outFile.is_open()) {
+//	    outFile << node_id;
+//	    outFile.close();
+//	}
 	// fprintf(stdout, "[MALLOC]: %p TID : %d FROM NODE %d(%d) to %d\n", (void*)ptr, OS::getTID(), node_id, cpu_id, OS::getNumaOfPage(ptr));
 	
 	//reg to page table

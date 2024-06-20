@@ -11,7 +11,9 @@
 #include <sched.h>
 #include <fstream>
 #include <sys/mman.h>
+#include <sstream>
 #include <cassert>
+#include <unistd.h>
 #include <sys/syscall.h>
 #include <unistd.h>
 #include "ThreadTracker.hpp"
@@ -347,23 +349,35 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 	}
 	
 
+	long pageSize = sysconf(_SC_PAGESIZE);
+	if (pageSize == -1) {
+	    std::cerr << "ERROR Getting PGSIZE of System" << std::endl;
+	}
+
 	if (pageNode == -2) {
 		// if (write)
 		// 	// fprintf(stdout, "np %d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
 		// else
 		// 	// fprintf(stdout, "np %d %p %d %d %d\n", 1, (void*)addr, this->tid, node_id, cpu_id);
 	} else {
-		int remote = (node_id != (unsigned int)pageNode) ? 1 : 0;
-		if (remote) {
-			this->buffer.append("R");
-		} else {
-			this->buffer.append("L");
-		}
+		// int remote = (node_id != (unsigned int)pageNode) ? 1 : 0;
+		// if (remote) {
+		//	this->buffer.append("");
+		// } else {
+		// 	this->buffer.append("L");
+		// }
+
+		// Essentially getting the base addr of the page that our memory access is located in
+		uintptr_t base_addr = reinterpret_cast<uintptr_t>(addr) & ~(pageSize - 1);
+		std::stringstream ss;
+		ss << reinterpret_cast<void*>(base_addr) << node_id << pageNode << ",";
+		this->buffer.append(ss.str());
+
 		if (this->buffer.size() >= BUFFER_SIZE) {
 			std::string filename = "/mydata/results/output_" + std::to_string(this->tid) + ".txt";
 			std::ofstream outFile(filename, std::ios::app);
 			if (outFile.is_open()) {
-				// std::cout << "Flushed IO " << this->buffer.size() << std::endl;
+				std::cout << "Flushed IO " << this->buffer.size() << std::endl;
 				outFile << this->buffer;
 				outFile.close();
 			}
@@ -371,8 +385,7 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 		}
 	}
 	
-
-	//if we skip we take care of the first touch (previous lines) but we do not account
+//if we skip we take care of the first touch (previous lines) but we do not account
 	if (skip)
 		return;
 

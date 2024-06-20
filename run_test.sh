@@ -47,35 +47,21 @@ restore_default() {
 
 run_test() {
     local bench=$1
-    # local extensions=$(echo "$bench" | cut -d'.' -f2)
-    # delete output.txt because it's too big
-    # rm /users/taeminha/numaprof/build/output.txt
-    # pipe mem access patterns to output.txt file
-    # /users/taeminha/numaprof/build/bin/numaprof 
-    # mpiexec --allow-run-as-root -n 16 /users/taeminha/numaprof/build/benchmarks/mg.C.x >> results.txt
-    # mpiexec --allow-run-as-root -n 16 /users/taeminha/numaprof/build/benchmarks/mg.C.x >> /users/taeminha/numaprof/build/output.txt
     cd /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000 
     # /users/taeminha/numaprof/build/bin/numaprof /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000/xz_s_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0
-    # python3 /users/taeminha/numaprof/print_result.py >> results_$i.txt
-    /users/taeminha/numaprof/build/bin/numaprof /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000/cactuBSSN_s_base.taemin_numa-m64 spec_test.par
-    # remove webview file created by numaprof
-    # rm /users/taeminha/numaprof/build/numaprof-*
+    sudo /users/taeminha/numaprof/trace_lb_migration.py /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000/xz_s_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0 >> /mydata/results/lb_traces.txt
 }
 
 move_output() {
     local i=$1
     local version=$2
     local bench=$3
-
+    mv /mydata/results/lb_traces.txt /mydata/results/$bench/iteration_$i
     mv /mydata/results/output_* /mydata/results/$bench/iteration_$i/$version
 }
 
-# remove previous experiment's result
-# rm results_*.txt
-# rm /users/taeminha/numaprof/output_*.txt
-# rm -rf /users/taeminha/numaprof/iteration_*
 
-
+# get start time
 start_time=$(date +"%Y-%m-%d %H:%M:%S")
 
 
@@ -83,7 +69,7 @@ mkdir /mydata/results
 benchmark=$1
 rm -rf /mydata/results/$benchmark
 mkdir /mydata/results/$benchmark
-for i in {1..5}; do
+for i in {1..10}; do
     mkdir /mydata/results/$benchmark/iteration_$i
     cd /mydata/results/$benchmark/iteration_$i
     rm /mydata/results/$benchmark/iteration_$i/numaprof-*
@@ -98,96 +84,98 @@ for i in {1..5}; do
     run_test $benchmark
     move_output $i baseline $benchmark
 
+    sudo python3 /users/taeminha/numaprof/post_process.py $benchmark
+
     # Modifying numa_balancing_scan_period_min 
 
     # Loop through each value and echo it into the file
-    echo TEST: SYSCTL_NUMA_BALANCING_SCAN_PERIOD_MIN
-    for value in "${values[@]}"; do
-        echo PERIOD_MIN_$value
-        echo $value > /proc/sys/kernel/numa_balancing_scan_period_min
-        # print_proc_vals
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_period_min_$value
-        run_test $benchmark
-        move_output $i numa_balancing_scan_period_min_$value $benchmark
-    done
+    # echo TEST: SYSCTL_NUMA_BALANCING_SCAN_PERIOD_MIN
+    # for value in "${values[@]}"; do
+    #     echo PERIOD_MIN_$value
+    #     echo $value > /proc/sys/kernel/numa_balancing_scan_period_min
+    #     # print_proc_vals
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_period_min_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_scan_period_min_$value $benchmark
+    # done
 
-    restore_default
+    # restore_default
     
-    echo TEST: SYSCTL_NUMA_BALANCING_SCAN_PERIOD_MAX
-    for value in "${scan_period_max_value[@]}"; do
-        echo $value > /proc/sys/kernel/numa_balancing_scan_period_max
-        # print_proc_vals
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_period_max_$value
-        run_test $benchmark
-        move_output $i numa_balancing_scan_period_max_$value $benchmark
-    done
+    # echo TEST: SYSCTL_NUMA_BALANCING_SCAN_PERIOD_MAX
+    # for value in "${scan_period_max_value[@]}"; do
+    #     echo $value > /proc/sys/kernel/numa_balancing_scan_period_max
+    #     # print_proc_vals
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_period_max_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_scan_period_max_$value $benchmark
+    # done
 
-    restore_default
+    # restore_default
     
-    echo TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE
-    for value in "${scan_size_value[@]}"; do
-        echo $value > /proc/sys/kernel/numa_balancing_scan_size
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_size_$value
-        run_test $benchmark
-        move_output $i numa_balancing_scan_size_$value $benchmark
-        # print_proc_vals
-    done
+    # echo TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE
+    # for value in "${scan_size_value[@]}"; do
+    #     echo $value > /proc/sys/kernel/numa_balancing_scan_size
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_size_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_scan_size_$value $benchmark
+    #     # print_proc_vals
+    # done
 
-    restore_default
+    # restore_default
 
-    echo TEST: SYSCTL_NUMA_BALANCING_MSNS_THRESHOLD
-    for value in "${msns_threshold[@]}"; do
-        echo $value > /proc/sys/kernel/numa_balancing_msns_threshold
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_msns_threshold_$value
-        run_test $benchmark
-        move_output $i numa_balancing_msns_threshold_$value $benchmark
-        # print_proc_vals
-    done
+    # echo TEST: SYSCTL_NUMA_BALANCING_MSNS_THRESHOLD
+    # for value in "${msns_threshold[@]}"; do
+    #     echo $value > /proc/sys/kernel/numa_balancing_msns_threshold
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_msns_threshold_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_msns_threshold_$value $benchmark
+    #     # print_proc_vals
+    # done
 
-    restore_default
-    echo TEST: SYSCTL_NUMA_BALANCING_ACTIVE_NODE_FRACTION
-    for value in "${active_node_fraction[@]}"; do
-        echo $value > /proc/sys/kernel/numa_balancing_active_node_fraction    
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_active_node_fraction_$value
-        run_test $benchmark
-        move_output $i numa_balancing_active_node_fraction_$value $benchmark
-    done
+    # restore_default
+    # echo TEST: SYSCTL_NUMA_BALANCING_ACTIVE_NODE_FRACTION
+    # for value in "${active_node_fraction[@]}"; do
+    #     echo $value > /proc/sys/kernel/numa_balancing_active_node_fraction    
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_active_node_fraction_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_active_node_fraction_$value $benchmark
+    # done
 
-    restore_default
+    # restore_default
 
-    echo TEST: SYSCTL_NUMA_BALANCING_MEM_DISTRIBUTION_THRESHOLD
-    for value in "${mem_distribution_threshold[@]}"; do
-        echo $value > /proc/sys/kernel/numa_balancing_mem_distribution_threshold
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_mem_distribution_threshold_$value
-        run_test $benchmark
-        move_output $i numa_balancing_mem_distribution_threshold_$value $benchmark
-    done
+    # echo TEST: SYSCTL_NUMA_BALANCING_MEM_DISTRIBUTION_THRESHOLD
+    # for value in "${mem_distribution_threshold[@]}"; do
+    #     echo $value > /proc/sys/kernel/numa_balancing_mem_distribution_threshold
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_mem_distribution_threshold_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_mem_distribution_threshold_$value $benchmark
+    # done
 
-    restore_default
+    # restore_default
 
-    echo TEST: SYSCTL_NUMA_BALANCING_TASK_MIGRATE_INTERVAL
-    for value in "${task_migrate_interval[@]}"; do
-        echo $value > /proc/sys/kernel/numa_balancing_task_migrate_interval
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_task_migrate_interval_$value
-        run_test $benchmark
-        move_output $i numa_balancing_task_migrate_interval_$value $benchmark
-    done
+    # echo TEST: SYSCTL_NUMA_BALANCING_TASK_MIGRATE_INTERVAL
+    # for value in "${task_migrate_interval[@]}"; do
+    #     echo $value > /proc/sys/kernel/numa_balancing_task_migrate_interval
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_task_migrate_interval_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_task_migrate_interval_$value $benchmark
+    # done
 
-    restore_default
+    # restore_default
 
-    echo TEST: SYSCTL_NUMA_BALANCING_SCAN_PERIOD_ADJUST_THRESHOLD
-    for value in "${period_adjust_threshold[@]}"; do
-        echo $value > /proc/sys/kernel/numa_balancing_scan_period_adjust_threshold
-        mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_period_adjust_threshold_$value
-        run_test $benchmark
-        move_output $i numa_balancing_scan_period_adjust_threshold_$value $benchmark
-    done
+    # echo TEST: SYSCTL_NUMA_BALANCING_SCAN_PERIOD_ADJUST_THRESHOLD
+    # for value in "${period_adjust_threshold[@]}"; do
+    #     echo $value > /proc/sys/kernel/numa_balancing_scan_period_adjust_threshold
+    #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_period_adjust_threshold_$value
+    #     run_test $benchmark
+    #     move_output $i numa_balancing_scan_period_adjust_threshold_$value $benchmark
+    # done
 done
 
 rm /mydata/resutls/$benchmark/df.txt
 rm /mydata/results/$benchmark/results.txt
-sudo python3 print_result $benchmark
-
+# sudo python3 /users/taeminha/numaprof/print_result $benchmark
+sudo python3 /users/taeminha/numaprof/post_process.py $benchmark
 #notify completion of job through email
 end_time=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Bench: $benchmark Start: $start_time End: $end_time" | mail -s "Finished NUMAPROF" taemin.ha@utexas.edu
