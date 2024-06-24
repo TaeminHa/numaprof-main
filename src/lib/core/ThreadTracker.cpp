@@ -296,12 +296,12 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 	unsigned int cpu_id; 
 	unsigned int node_id;
 	#ifdef SYS_getcpu
-		syscall(SYS_getcpu, &cpu_id, &node_id);
+		int ret = syscall(SYS_getcpu, &cpu_id, &node_id);
+		if (ret == -1) {
+			std::cout << "ERROR: FAILED TO GET CPU or NID " << errno << std::endl;
+			std::exit(1);
+		}
 	#endif
-	// int cpu_id = sched_getcpu();
-	// int* nodeMap = this->topo->getNumaMap();
-	// int node_id = nodeMap[cpu_id];
-
 		
 	//if not defined use move pages
 	if (pageNode <= NUMAPROF_DEFAULT_NUMA_NODE)
@@ -377,7 +377,7 @@ void ThreadTracker::onAccessHandling(size_t ip,size_t addr,bool write,bool skip)
 			std::string filename = "/mydata/results/output_" + std::to_string(this->tid) + ".txt";
 			std::ofstream outFile(filename, std::ios::app);
 			if (outFile.is_open()) {
-				std::cout << "Flushed IO " << this->buffer.size() << std::endl;
+				// std::cout << "Flushed IO " << this->buffer.size() << std::endl;
 				outFile << this->buffer;
 				outFile.close();
 			}
