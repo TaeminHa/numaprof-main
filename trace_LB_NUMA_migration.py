@@ -482,7 +482,7 @@ b["process_exit_events"].open_perf_buffer(print_process_exit_event, page_cnt=128
 # Function to execute the target executable with arguments
 def run_executable(executable_path, args):
     process = subprocess.Popen([executable_path] + args)
-    return process
+    return process, process.pid
 
 # Main function
 def main():
@@ -495,7 +495,7 @@ def main():
     args = sys.argv[3:]
 
     # Start the executable with arguments
-    process = run_executable(executable_path, args)
+    process, pid = run_executable(executable_path, args)
 
     try:
         # Poll for events while the executable is running
@@ -506,6 +506,8 @@ def main():
         process.terminate()
     
     with open(f'/mydata/results/657.xz_s/iteration_{iteration}/traces.txt', 'a') as file:
+        file.write(f"MAIN PID: {pid}\n")
+
         for pid, migration_count in sched_move_numa_map.items():
             for numaset, count in migration_count.items():
                 file.write(f"sched_move_numa({pid}): {numaset} : {count}\n")
