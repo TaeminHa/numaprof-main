@@ -1,4 +1,5 @@
 from bcc import BPF
+import time
 from collections import defaultdict, OrderedDict
 import ctypes as ct
 import subprocess
@@ -382,6 +383,7 @@ mm_set_migration_pte_map = defaultdict(lambda: defaultdict(int))
 thread_lifecycle_map = defaultdict(list)
 program_lifecycle_map = []
 thread_fork_count_map = defaultdict(int)
+lb_numa_conflict_counter = defaultdict(lambda: defaultdict(list))
 
 # Process events
 def print_event(cpu, data, size):
@@ -390,6 +392,8 @@ def print_event(cpu, data, size):
     # there are lost events, so we log inter-node migrations only
     if event.src_nid != event.dst_nid and event.pid >= 1000:
         sched_move_numa_map[event.pid][(event.src_nid, event.dst_nid)] += 1
+        if len(thread_lifecycle_map[event.pid]) > 0 and thread_lifecycle_map[event.pid][-1][1] == event.src_nid and thread_lifecycle_map[event.pid][-1][0] == 'LB_MIGRATE':
+            thread_lifecycle_map[event.pid].pop() 
         thread_lifecycle_map[event.pid].append(['NUMA_MIGRATE', event.src_nid, event.dst_nid, event.timestamp])
         program_lifecycle_map.append([event.pid, 'NUMA_MIGRATE', event.src_nid, event.dst_nid, event.timestamp])
     # print(f"{'sched_move_numa':<20} {event.pid:<8} {event.tgid:<8} {event.ngid:<8} {event.src_cpu:<8} {event.src_nid:<8} {event.dst_cpu:<8} {event.dst_nid:<8}")
@@ -399,8 +403,10 @@ def print_migrate_event(cpu, data, size):
     # for same reason, we want to prevent losing too many events
     if cpuid_nid[event.orig_cpu] != cpuid_nid[event.dest_cpu] and event.pid >= 1000:
         sched_migrate_task_map[event.pid][(cpuid_nid[event.orig_cpu], cpuid_nid[event.dest_cpu])] += 1
-        thread_lifecycle_map[event.pid].append(['LB_MIGRATE', cpuid_nid[event.orig_cpu], cpuid_nid[event.dest_cpu], event.timestamp])
         program_lifecycle_map.append([event.pid, 'LB_MIGRATE', cpuid_nid[event.orig_cpu], cpuid_nid[event.dest_cpu], event.timestamp])
+        if len(thread_lifecycle_map[event.pid]) > 0 and thread_lifecycle_map[event.pid][-1][1] == cpuid_nid[event.orig_cpu]: 
+            return
+        thread_lifecycle_map[event.pid].append(['LB_MIGRATE', cpuid_nid[event.orig_cpu], cpuid_nid[event.dest_cpu], event.timestamp])
     # sched_migrate_task_map[event.pid].append((event.orig_cpu, cpuid_nid[event.orig_cpu], event.dest_cpu, cpuid_nid[event.dest_cpu]))
     # print(f"{'sched_migrate_task':<20} {event.comm.decode('utf-8'):<16} {event.pid:<8} {event.prio:<8} {event.orig_cpu:<8} {event.dest_cpu:<8}")
 
@@ -411,12 +417,12 @@ def print_page_migrate_event(cpu, data, size):
     # also, only log numa_misplaced events
     if event.reason == 5 and event.pid >= 1000:
         mm_migrate_pages_map[event.pid][reason] += event.succeeded
-        if len(thread_lifecycle_map[event.pid]) > 0 and thread_lifecycle_map[event.pid][-1][0] == 'PAGE_MIGRATE':
-            thread_lifecycle_map[event.pid][-1][1] += event.succeeded
-            thread_lifecycle_map[event.pid][-1][2] += event.failed
-            thread_lifecycle_map[event.pid][-1][-1] = event.timestamp
-        else:
-            thread_lifecycle_map[event.pid].append(['PAGE_MIGRATE', event.succeeded, event.failed, event.timestamp])
+        # if len(thread_lifecycle_map[event.pid]) > 0 and thread_lifecycle_map[event.pid][-1][0] == 'PAGE_MIGRATE':
+        #     thread_lifecycle_map[event.pid][-1][1] += event.succeeded
+        #     thread_lifecycle_map[event.pid][-1][2] += event.failed
+        #     thread_lifecycle_map[event.pid][-1][-1] = event.timestamp
+        # else:
+        #     thread_lifecycle_map[event.pid].append(['PAGE_MIGRATE', event.succeeded, event.failed, event.timestamp])
         if len(program_lifecycle_map) > 0 and program_lifecycle_map[-1][0] == event.pid:
             program_lifecycle_map[-1][2] += event.succeeded
             program_lifecycle_map[-1][3] += event.failed
@@ -428,6 +434,8 @@ def print_page_migrate_event(cpu, data, size):
 def print_swap_numa_event(cpu, data, size):
     event = ct.cast(data, ct.POINTER(SwapNumaData)).contents
     sched_swap_numa_map[(event.src_pid, event.dst_pid)][(event.src_nid, event.dst_nid)] += 1
+    if len(thread_lifecycle_map[event.src_pid]) > 0 and thread_lifecycle_map[event.src_pid][-1][1] == event.src_nid and thread_lifecycle_map[event.src_pid][0] == 'LB_MIGRATE':
+        thread_lifecycle_map[event.src_pid].pop()
     thread_lifecycle_map[event.src_pid].append(['NUMA_SWAP', event.src_nid, event.dst_nid, event.timestamp])
     program_lifecycle_map.append([event.src_pid, 'NUMA_SWAP', event.src_nid, event.dst_nid, event.timestamp])
     # print(f"{'sched_swap_numa':<20} {event.src_pid:<8} {event.src_tgid:<8} {event.src_ngid:<8} {event.src_cpu:<8} {event.src_nid:<8} {event.dst_pid:<8} {event.dst_tgid:<8} {event.dst_ngid:<8} {event.dst_cpu:<8} {event.dst_nid:<8}")
@@ -442,24 +450,24 @@ def print_migrate_pages_start_event(cpu, data, size):
 
 def print_alloc_vmap_area_event(cpu, data, size):
     event = ct.cast(data, ct.POINTER(AllocVmapAreaData)).contents
-    thread_lifecycle_map[event.pid].append(['VM_ALLOC', event.addr, event.size, event.vstart, event.vend, event.timestamp])
+    # thread_lifecycle_map[event.pid].append(['VM_ALLOC', event.addr, event.size, event.vstart, event.vend, event.timestamp])
     program_lifecycle_map.append([event.pid, 'VM_ALLOC', event.addr, event.size, event.vstart, event.vend, event.timestamp])
 
 def print_free_vmap_area_event(cpu, data, size):
     event = ct.cast(data, ct.POINTER(FreeVmapAreaNoflushData)).contents
-    thread_lifecycle_map[event.pid].append(['VM_FREE', event.va_start, event.timestamp])
+    # thread_lifecycle_map[event.pid].append(['VM_FREE', event.va_start, event.timestamp])
     program_lifecycle_map.append([event.pid, 'VM_FREE', event.va_start, event.timestamp])
 
 def print_process_fork_event(cpu, data, size):
     event = ct.cast(data, ct.POINTER(ForkData)).contents
-    thread_lifecycle_map[event.parent_pid].append(['FORK', event.child_pid, cpuid_nid[event.cpu_id], event.timestamp])
+    # thread_lifecycle_map[event.parent_pid].append(['FORK', event.child_pid, cpuid_nid[event.cpu_id], event.timestamp])
     program_lifecycle_map.append([event.parent_pid, 'FORK', event.child_pid, cpuid_nid[event.cpu_id], event.timestamp])
     thread_fork_count_map[event.parent_pid] += 1
     
 
 def print_process_exit_event(cpu, data, size):
     event = ct.cast(data, ct.POINTER(ExitData)).contents
-    thread_lifecycle_map[event.pid].append(['EXIT', event.timestamp])
+    # thread_lifecycle_map[event.pid].append(['EXIT', event.timestamp])
     program_lifecycle_map.append([event.pid, 'EXIT', event.timestamp])
 # def print_pte_migrate_event(cpu, data, size):
 #     event = ct.cast(data, ct.POINTER(PTEMigrateData)).contents
@@ -479,6 +487,12 @@ b["process_exit_events"].open_perf_buffer(print_process_exit_event, page_cnt=128
 
 # b["pte_migrate_events"].open_perf_buffer(print_pte_migrate_event)
 
+def calc_time_diff(event1_timestamp_ns, event2_timestamp_ns):
+    difference_ns = event2_timestamp_ns - event1_timestamp_ns
+    # Convert nanoseconds to seconds
+    difference_seconds = difference_ns / 1_000_000_000
+    return difference_seconds
+
 # Function to execute the target executable with arguments
 def run_executable(executable_path, args):
     process = subprocess.Popen([executable_path] + args)
@@ -494,9 +508,9 @@ def main():
     executable_path = sys.argv[2]
     args = sys.argv[3:]
 
+    start_time = time.perf_counter()
     # Start the executable with arguments
-    process, pid = run_executable(executable_path, args)
-
+    process, main_pid = run_executable(executable_path, args)
     try:
         # Poll for events while the executable is running
         while process.poll() is None:
@@ -504,33 +518,71 @@ def main():
     except KeyboardInterrupt:
         print("Interrupted, detaching BPF program...")
         process.terminate()
-    
+    end_time = time.perf_counter()
+
+    elapsed_time = end_time - start_time
+    total_page_migration = 0 
     with open(f'/mydata/results/657.xz_s/iteration_{iteration}/traces.txt', 'a') as file:
-        file.write(f"MAIN PID: {pid}\n")
+        file.write(f"Elapsed Time: {elapsed_time}\n")
+        file.write(f"MAIN PID: {main_pid}\n")
 
         for pid, migration_count in sched_move_numa_map.items():
+            if pid < main_pid:
+                continue
             for numaset, count in migration_count.items():
                 file.write(f"sched_move_numa({pid}): {numaset} : {count}\n")
         for pid, migration_count in sched_migrate_task_map.items():
+            if pid < main_pid:
+                continue
             for numaset, count in migration_count.items():
                 file.write(f"sched_migrate_task({pid}): {numaset} : {count}\n")
         for pid, reason_count in mm_migrate_pages_map.items():
+            if pid < main_pid:
+                continue
             for reason, count in reason_count.items():
                 file.write(f"mm_migrate_pages({pid}): {reason} : {count}\n")
+                total_page_migration += count
         for pid_pair, nid_pair in sched_swap_numa_map.items():
             for src_nid, dest_nid in nid_pair.items():
                 file.write(f"sched_swap_numa({pid_pair}): {src_nid} : {dest_nid}\n")
         for pid, lifecycle in thread_lifecycle_map.items():
+            if pid < main_pid:
+                continue
             file.write(f"PID: {pid}\n")
             sorted_lifecycle = sorted(lifecycle, key=lambda x: x[-1])
-            for action in sorted_lifecycle:
-                file.write(f"{action}\n")
+            initial_decision = "" 
+            for i in range(len(sorted_lifecycle)):
+                file.write(f"{sorted_lifecycle[i]}\n")
+                if i == 0:
+                    initial_decision = sorted_lifecycle[i][0]
+                elif (sorted_lifecycle[i - 1][0] == 'LB_MIGRATE' or sorted_lifecycle[i][0] == 'LB_MIGRATE') and sorted_lifecycle[i - 1][0] != sorted_lifecycle[i][0]:
+                    time_diff = calc_time_diff(sorted_lifecycle[i - 1][-1], sorted_lifecycle[i][-1]) 
+                    if sorted_lifecycle[i][0] == 'LB_MIGRATE':
+                        # LB disagrees with the latest NUMA Balancer's migration decision
+                        lb_numa_conflict_counter[pid][0].append(time_diff)
+                    else:
+                        # NUMA Balancer disagrees with the LB's decision to migrate; i.e. LB migrated a task to wrong NUMA Node
+                        lb_numa_conflict_counter[pid][1].append(time_diff)
+                else:
+                    continue
+                        
+            lb_numa_conflict_counter[pid][2].append(initial_decision)
         file.write("\nEvent Timeline\n")
         sorted_program_lifecycle = sorted(program_lifecycle_map, key=lambda x: x[-1])
         for event in sorted_program_lifecycle:
             file.write(f"{event}\n")
         for pid, fork_count in thread_fork_count_map.items():
+            if pid < main_pid:
+                continue
             file.write(f"{pid}: {fork_count}\n")
+
+    with open(f'/mydata/results/657.xz_s/iteration_{iteration}/post_process.txt', 'a') as f:
+        f.write(f"TIME: {elapsed_time}\n")
+        f.write(f"PAGE MIGRATION COUNT: {total_page_migration}\n")
+        for pid, disagree_map in lb_numa_conflict_counter.items():
+            for lb_numa, times in disagree_map.items():
+                f.write(f"{pid} {lb_numa}: {times}\n")
+            f.write(f"\n")
     print(f"Finished Processing Iteration_{iteration}\n")
 if __name__ == "__main__":
     main()

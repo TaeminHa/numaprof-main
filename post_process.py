@@ -61,13 +61,18 @@ def read_files_in_directory(directory):
                                     continue
                                 thread_location = int(addr[-2])
                                 page_location = int(addr[-1])
+                                if thread_location > 1:
+                                    print(f"{page_addr} {thread_location} {page_location}")
+                                    continue
+                                if page_location > 1:
+                                    print(f"{page_addr} {thread_location} {page_location}")
+                                    continue
                                 page_addr = addr[:-2]
-
-                                thread_to_pages[tid].add(page_addr)
-
                                 if page_addr[-1] == "-":
                                     # print(f"Weird Addr: {page_addr}")
                                     continue 
+                                    
+                                thread_to_pages[tid].add(page_addr)
                                 if page_location == thread_location:
                                     local_access_count += 1
                                     thread_nid_residency[thread_location][0] += 1
@@ -83,12 +88,16 @@ def read_files_in_directory(directory):
                                 # update data map
                                 if page_addr in nid_of_page:
                                     if nid_of_page[page_addr] != page_location:
+                                        with open(sub_dir + '/'+tid+'_res.txt', 'a') as file:
+                                            file.write(f"Page Migrated {page_addr}\n")
                                         switch_counter_per_page[page_addr] += 1
                                 nid_of_page[page_addr] = page_location
                                 
                                 if nid_of_thread != thread_location:
                                     switch_counter_thread += 1
-                                    nid_or_thread = thread_location
+                                    with open(sub_dir + '/'+tid+'_res.txt', 'a') as file:
+                                        file.write(f"Thread Migrated From {nid_of_thread} To {thread_location} : {switch_counter_thread}\n")
+                                    nid_of_thread = thread_location
 
                     # we finished collecting stat for specific thread file
                     resfile = sub_dir + '/' + tid + '_res.txt'
@@ -139,7 +148,7 @@ def read_files_in_directory(directory):
         shared_pages = {}
         thread_combinations = chain.from_iterable(combinations(thread_to_pages.keys(), r) for r in range(2, len(thread_to_pages) + 1))
 
-        for comebo in thread_combinations:
+        for combo in thread_combinations:
             shared_page = set.intersection(*(thread_to_pages[tid] for tid in combo))
             shared_pages[combo] = shared_page
 
@@ -148,6 +157,8 @@ def read_files_in_directory(directory):
             other_pages_union = set().union(*(thread_to_pages[other_tid] for other_tid in thread_to_pages if other_tid != tid))
             private_pages[tid] = pages - other_pages_union
 
+        if 'traces' in sub_dir:
+            continue
         with open(sub_dir + '/shared_pages.txt', 'a') as file:
             for thread_pair, shared_pages in shared_pages.items():
                 file.write(f"{thread_pair}\n")
@@ -193,10 +204,11 @@ def main():
         if not os.path.isdir(iteration_directory):
             print(f'Directory {iteration_directory} does not exist.')
             return
+        read_files_in_directory(iteration_directory)
         # thread = threading.Thread(target=read_files_in_directory, args=(iteration_directory,))
         # threads.append(thread)
         # thread.start()
-
+        
     # for thread in threads:
         # thread.join()
         # Read files in the specified iteration directory

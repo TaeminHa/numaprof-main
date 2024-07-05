@@ -48,18 +48,135 @@ restore_default() {
 run_test() {
     local bench=$1
     local iteration=$2
-    cd /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_refspeed_taemin_numa-m64.0000 
-    # /users/taeminha/numaprof/build/bin/numaprof /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_test_taemin_numa-m64.0000/xz_s_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0
-    sudo python3 /users/taeminha/numaprof/trace_LB_NUMA_migration.py $iteration /users/taeminha/spec/benchspec/CPU/$bench/run/run_base_refspeed_taemin_numa-m64.0000/xz_s_base.taemin_numa-m64 cpu2006docs.tar.xz 6643 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1036078272 1111795472 4 
- 
+
+    echo "Executing $bench Iteration $iteration"
+
+    base_command="sudo python3 /users/taeminha/numaprof/profile_numa_overhead.py"
+    base_dir="/users/taeminha/spec/benchspec/CPU"
+
+    if [ "$bench" = "500.perlbench_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/perlbench_r_base.taemin_numa-m64
+    elif [ "$bench" = "503.bwaves_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/bwaves_r_base.taemin_numa-m64 bwaves_1 < bwaves_1.in
+    elif [ "$bench" = "505.mcf_r" ]; then
+        cd $base_dir/$bench/run/run_base_refrate_taemin_numa-m64.0000 
+        $base_command $bench $base_dir/$bench/run/run_base_refrate_taemin_numa-m64.0000/mcf_r_base.taemin_numa-m64 inp.in
+    elif [ "$bench" = "507.cactusBSSN_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/cactusBSSN_r_base.taemin_numa-m64 spec_test.par
+    elif [ "$bench" = "508.namd_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/namd_r_base.taemin_numa-m64 --input apoa1.input --iterations 1 --output apoa1.test.output
+    elif [ "$bench" = "511.povray_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/povray_r_base.taemin_numa-m64 SPEC-benchmark-test.ini
+    elif [ "$bench" = "519.lbm_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/lbm_r_base.taemin_numa-m64 20 reference.dat 0 1 100_100_130_cf_a.o
+    elif [ "$bench" = "520.omnetpp_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/omnetpp_r_base.taemin_numa-m64 -c General -r 0
+    elif [ "$bench" = "523.xalancbmk_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/cpuxalan_r_base.taemin_numa-m64 -v test.xml xalanc.xsl
+    elif [ "$bench" = "525.x264_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/x264_r_base.taemin_numa-m64 --dumpyuv 50 --frames 156 -o BuckBunny_New.264 BuckBunny.yuv 1280x720
+    elif [ "$bench" = "531.deepsjeng_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/deepsjeng_r_base.taemin_numa-m64 test.txt
+    elif [ "$bench" = "538.imagick_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/imagick_r_base.taemin_numa-m64 -limit disk 0 test_input.tga -shear 25 -resize 640x480 -negate -alpha Off test_output.tga
+    elif [ "$bench" = "541.leela_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/leela_r_base.taemin_numa-m64 test.sgf
+    elif [ "$bench" = "544.nab_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/nab_r_base.taemin_numa-m64 hkrdenq 1930344093 1000
+    elif [ "$bench" = "548.exchange2_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/exchange2_r_base.taemin_numa-m64 0
+    elif [ "$bench" = "549.fotonik3d_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/fotonik3d_r_base.taemin_numa-m64
+    elif [ "$bench" = "554.roms_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/roms_r_base.taemin_numa-m64 < ocean_benchmark0.in.x
+    elif [ "$bench" = "557.xz_r" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/xz_r_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/xz_r_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1462248 -1 1
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/xz_r_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1428548 -1 2
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/xz_r_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1034828 -1 3e
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/xz_r_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1061968 -1 4
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/xz_r_base.taemin_numa-m64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1034588 -1 4e
+    elif [ "$bench" = "600.perlbench_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/perlbench_s_base.taemin_numa-m64 -I. -I./lib makerand.pl
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/perlbench_s_base.taemin_numa-m64 -I. -I./lib test.pl
+    elif [ "$bench" = "603.bwaves_s" ]; then
+        cd $base_dir/$bench/run/run_base_refspeed_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_refspeed_taemin_numa-m64.0000/speed_bwaves_base.taemin_numa-m64 bwaves_1 < bwaves_1.in
+        $base_command $bench $base_dir/$bench/run/run_base_refspeed_taemin_numa-m64.0000/speed_bwaves_base.taemin_numa-m64 bwaves_2 < bwaves_2.in
+    elif [ "$bench" = "605.mcf_s" ]; then
+        cd $base_dir/$bench/run/run_base_refspeed_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_refspeed_taemin_numa-m64.0000/mcf_s_base.taemin_numa-m64 inp.in
+    elif [ "$bench" = "607.cactuBSSN_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/cactuBSSN_s_base.taemin_numa-m64 spec_test.par
+    elif [ "$bench" = "619.lbm_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/lbm_s_base.taemin_numa-m64 20 reference.dat 0 1 200_200_260_ldc.of
+    elif [ "$bench" = "620.omnetpp_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/omnetpp_s_base.taemin_numa-m64 -c General -r 0
+    elif [ "$bench" = "623.xalancbmk_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/xalancbmk_s_base.taemin_numa-m64 -v test.xml xalanc.xsl
+    elif [ "$bench" = "625.x264_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/x264_s_base.taemin_numa-m64 --dumpyuv 50 --frames 156 -o BuckBunny_New.264 BuckBunny.yuv 1280x720
+    elif [ "$bench" = "631.deepsjeng_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/deepsjeng_s_base.taemin_numa-m64 test.txt
+    elif [ "$bench" = "638.imagick_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/imagick_s_base.taemin_numa-m64 -limit disk 0 test_input.tga -shear 25 -resize 640x480 -negate -alpha Off test_output.tga
+    elif [ "$bench" = "641.leela_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/leela_s_base.taemin_numa-m64 test.sgf
+    elif [ "$bench" = "644.nab_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/nab_s_base.taemin_numa-m64 hkrdenq 1930344093 1000
+    elif [ "$bench" = "648.exchange2_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/exchange2_s_base.taemin_numa-m64 0
+    elif [ "$bench" = "649.foronik3d_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/fotonik3d_s_base.taemin_numa-m64
+    elif [ "$bench" = "654.roms_s" ]; then
+        cd $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000
+        $base_command $bench $base_dir/$bench/run/run_base_test_taemin_numa-m64.0000/sroms_base.taemin_numa-m64 < ocean_benchmark0.in
+    elif [ "$bench" = "657.xz_s" ]; then
+        cd $base_dir/$bench/run/run_base_refspeed_taemin_numa-m64.0000 
+        $base_command $bench $base_dir/$bench/run/run_base_refspeed_taemin_numa-m64.0000/xz_s_base.taemin_numa-m64 cpu2006docs.tar.xz 6643 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1036078272 1111795472 4
+    else
+        cd /users/taeminha/numaprof
+        python3 profile_numa_overhead.py $bench stress-ng --$bench 1 -t 60 
+    fi
 }
 
 move_output() {
     local i=$1
     local version=$2
     local bench=$3
-    mv /mydata/results/$bench/iteration_$i/traces.txt /mydata/results/$bench/iteration_$i/$version
-    mv /mydata/results/output_* /mydata/results/$bench/iteration_$i/$version
+    mv /mydata/results/$bench/overhead.txt /mydata/results/$bench/iteration_$i/
+    # mv /mydata/results/$bench/iteration_$i/traces.txt /mydata/results/$bench/iteration_$i/$version
+    # mv /mydata/results/output_* /mydata/results/$bench/iteration_$i/$version
+    # mv /mydata/results/$bench/iteration_$i/post_process.txt /mydata/results/$bench/iteration_$i/$version
 }
 
 
@@ -116,6 +233,7 @@ for i in {1..10}; do
     #
     # echo TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration $i
     # for value in "${scan_size_value[@]}"; do
+    #     echo $value
     #     echo $value > /proc/sys/kernel/numa_balancing_scan_size
     #     mkdir /mydata/results/$benchmark/iteration_$i/numa_balancing_scan_size_$value
     #     run_test $benchmark $i
@@ -180,7 +298,7 @@ rm /mydata/results/$benchmark/results.txt
 # sudo python3 /users/taeminha/numaprof/post_process.py $benchmark
 #notify completion of job through email
 end_time=$(date +"%Y-%m-%d %H:%M:%S")
-echo -e "Bench: $benchmark \n Start: $start_time \n End: $end_time" | mail -s "Finished NUMAprof" taemin.ha@utexas.edu
+echo -e "Bench: $benchmark \nStart: $start_time \nEnd: $end_time" | mail -s "Finished NUMAprof" taemin.ha@utexas.edu
 
 # restore_default
 # for i in {1..10}

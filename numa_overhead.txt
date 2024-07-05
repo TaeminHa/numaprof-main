@@ -1,0 +1,2052 @@
+ITERATION 1 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.25739197601797
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+104538	889460546	328
+2629	68425	3
+102617	944163	1
+Time Spent in task_numa_work: 890473134
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	70872	3
+2335	33491	2
+102617	22867	1
+104538	4940675347	1222367
+Time Spent in migrate_misplaced_folio: 4940802577
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.831275711s Out of 211.25739197601797s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 1
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 213.26387451495975
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+100701	1688944	2
+2629	52008	3
+104594	659817091	1277
+Time Spent in task_numa_work: 661558043
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+98494	19120	1
+580	79739	3
+104594	6972446541	2042279
+55215	24516	1
+100701	13569	1
+Time Spent in migrate_misplaced_folio: 6972583485
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.634141528s Out of 213.26387451495975s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 213.25343993800925
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+104647	886465377	775
+49666	3969870	1
+2629	58500	3
+Time Spent in task_numa_work: 890493747
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+104647	6707985245	1969991
+580	81860	4
+49666	272022	30
+55215	64443	3
+96264	8990	1
+98494	21586	1
+Time Spent in migrate_misplaced_folio: 6708434146
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.598927893s Out of 213.25343993800925s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.2654042369686
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	61814	3
+104702	922347633	399
+100701	431419	1
+Time Spent in task_numa_work: 922840866
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	627166	38
+580	380977	7
+100701	23065	1
+104776	22059	3
+104755	22894	2
+96264	15491	1
+104743	109898	15
+104702	5072777182	1252594
+Time Spent in migrate_misplaced_folio: 5073978732
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.996819598s Out of 211.2654042369686s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.26808031398105
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+104790	939265203	233
+2629	43130	2
+Time Spent in task_numa_work: 939308333
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+55215	29099	2
+104790	6575848124	1970381
+49666	410142	25
+98494	21613	1
+Time Spent in migrate_misplaced_folio: 6576308978
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.515617311s Out of 212.26808031398105s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2600226259674
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+104843	954353457	145
+2335	337728	1
+2629	78342	4
+Time Spent in task_numa_work: 954769527
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	36365	2
+49666	159891	9
+104843	5527626196	1395902
+2335	150097	6
+Time Spent in migrate_misplaced_folio: 5527972549
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.482742076s Out of 210.2600226259674s
+
+ITERATION 2 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26256001199363
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+102617	1464701	1
+104898	901554417	353
+2629	59552	3
+Time Spent in task_numa_work: 903078670
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	106914	5
+49666	433215	28
+104898	4640763106	1138607
+55215	29040	1
+2335	331052	31
+Time Spent in migrate_misplaced_folio: 4641663327
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.544741997s Out of 210.26256001199363s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 2
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.2564356509829
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	57653	3
+104947	659700818	1270
+102617	4590	1
+98494	696774	1
+100704	603802	1
+Time Spent in task_numa_work: 661063637
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+104947	6328846842	1968389
+580	51863	2
+49666	364547	18
+2335	248090	19
+98494	103235	9
+55215	32863	2
+Time Spent in migrate_misplaced_folio: 6329647440
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.990711077s Out of 212.2564356509829s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26280848198803
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105012	913802700	766
+102617	699572	3
+2629	56178	3
+Time Spent in task_numa_work: 914558450
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+2335	200479	10
+580	51193	2
+102617	119379	14
+98494	17749	1
+49666	254166	13
+55215	16591	1
+105012	4745924202	1169532
+Time Spent in migrate_misplaced_folio: 4746583759
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.661142209s Out of 210.26280848198803s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2570514419931
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105067	874136488	405
+2629	47831	3
+Time Spent in task_numa_work: 874184319
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+105109	74381	10
+49666	550858	34
+98494	26063	1
+580	90552	4
+2335	182516	8
+55215	28460	2
+105067	4662185582	1139685
+Time Spent in migrate_misplaced_folio: 4663138412
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.537322731s Out of 210.2570514419931s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2604744050186
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	56512	3
+105120	1039564433	274
+Time Spent in task_numa_work: 1039620945
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+105120	5184273511	1262800
+49666	400216	26
+102617	32478	2
+580	70966	3
+2335	44996	2
+Time Spent in migrate_misplaced_folio: 5184822167
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.224443112s Out of 210.2604744050186s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26343098201323
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+96264	7757776	1
+2629	62704	3
+105173	1023866162	186
+Time Spent in task_numa_work: 1031686642
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+102617	93967	7
+96264	43873	2
+580	112358	5
+105173	5683672722	1415538
+55215	17002	1
+49666	591395	31
+Time Spent in migrate_misplaced_folio: 5684531317
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.716217959s Out of 211.26343098201323s
+
+ITERATION 3 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2530696960166
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+101291	4246395	4
+105232	855915297	407
+2629	58476	3
+Time Spent in task_numa_work: 860220168
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	331457	22
+101291	44879	2
+105232	4966815916	1208619
+102617	22077	1
+580	95624	6
+Time Spent in migrate_misplaced_folio: 4967309953
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.827530121s Out of 210.2530696960166s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 3
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 209.26294294698164
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+102617	802385	1
+2629	53234	3
+105285	657422031	1237
+98494	585152	1
+Time Spent in task_numa_work: 658862802
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	282372	16
+105285	4764968045	1169924
+98494	25138	1
+96264	22754	1
+Time Spent in migrate_misplaced_folio: 4765298309
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.424161111s Out of 209.26294294698164s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.261601841019
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105338	836707027	667
+2629	64303	3
+Time Spent in task_numa_work: 836771330
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	17533	1
+105338	5569390906	1339093
+98494	27541	1
+Time Spent in migrate_misplaced_folio: 5569435980
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.40620731s Out of 210.261601841019s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 209.25621681596385
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105390	755270215	291
+2629	55076	3
+Time Spent in task_numa_work: 755325291
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	100777	8
+580	146819	7
+102617	22475	1
+2556	16718	1
+105390	4478202320	1099436
+Time Spent in migrate_misplaced_folio: 4478489109
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.2338144s Out of 209.25621681596385s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26713433803525
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105446	987368460	221
+101291	1234044	1
+96264	2769125	1
+2629	45405	2
+Time Spent in task_numa_work: 991417034
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	143684	9
+98494	20618	1
+580	132894	7
+55215	50268	2
+102617	28248	2
+105446	5134181854	1269580
+Time Spent in migrate_misplaced_folio: 5134557566
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.1259746s Out of 211.26713433803525s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.24974149599439
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	79663	4
+2335	160987	1
+105499	1056567401	191
+Time Spent in task_numa_work: 1056808051
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+55215	11005	1
+98494	21542	1
+580	44478	3
+49666	332331	13
+2335	396614	28
+102617	22793	1
+105499	6465015842	1948032
+Time Spent in migrate_misplaced_folio: 6465844605
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.522652656s Out of 212.24974149599439s
+
+ITERATION 4 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.25938524398953
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105556	887260420	330
+2629	54459	3
+Time Spent in task_numa_work: 887314879
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	115673	6
+2335	148595	8
+105556	5333960139	1304673
+580	27101	1
+55215	172947	10
+Time Spent in migrate_misplaced_folio: 5334424455
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.221739334s Out of 210.25938524398953s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 4
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 209.26027568802238
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105609	646383211	1264
+98494	1046089	1
+2629	44426	3
+Time Spent in task_numa_work: 647473726
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+2335	25485	1
+102617	24178	1
+49666	58350	3
+98494	87851	6
+105609	4050986417	992922
+580	18038	1
+55215	26225	2
+Time Spent in migrate_misplaced_folio: 4051226544
+
+TOTAL OVERHEAD OF NUMA BALANCING: 4.69870027s Out of 209.26027568802238s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.25815474096453
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	58602	3
+2556	878101	1
+102617	159020	1
+105658	848710013	678
+Time Spent in task_numa_work: 849805736
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+105658	6665235360	1980820
+49666	24295	1
+98494	17643	1
+580	46299	2
+102617	33211	2
+Time Spent in migrate_misplaced_folio: 6665356808
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.515162544s Out of 212.25815474096453s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.261977911985
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105711	858673938	360
+2629	56161	3
+Time Spent in task_numa_work: 858730099
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+105711	4655680511	1123092
+2556	23739	1
+2335	16479	1
+98494	53347	3
+580	109012	5
+Time Spent in migrate_misplaced_folio: 4655883088
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.514613187s Out of 210.261977911985s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26120774599258
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	54256	3
+96264	6327505	1
+105765	898917657	186
+Time Spent in task_numa_work: 905299418
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+2335	286055	27
+55215	32498	1
+105765	5168890405	1279250
+580	18512	1
+98494	19170	1
+2556	37965	2
+Time Spent in migrate_misplaced_folio: 5169284605
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.074584023s Out of 210.26120774599258s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26473955798429
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	66235	3
+105817	999324113	170
+Time Spent in task_numa_work: 999390348
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+105817	5702784313	1379595
+55215	53109	3
+580	110121	5
+Time Spent in migrate_misplaced_folio: 5702947543
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.702337891s Out of 211.26473955798429s
+
+ITERATION 5 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.2605229250039
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+49666	4828501	1
+2629	58988	3
+105875	993372515	413
+Time Spent in task_numa_work: 998260004
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	98602	4
+105875	5317908141	1343066
+Time Spent in migrate_misplaced_folio: 5318006743
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.316266747s Out of 211.2605229250039s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 5
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26856968097854
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+105939	736654593	1351
+2629	58654	3
+Time Spent in task_numa_work: 736713247
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+96264	36162	1
+580	37816	2
+105939	4748310471	1177932
+55215	28739	1
+Time Spent in migrate_misplaced_folio: 4748413188
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.485126435s Out of 210.26856968097854s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26886776299216
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+102772	2827295	1
+2629	58815	3
+105989	824848308	725
+Time Spent in task_numa_work: 827734418
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+105989	5369015298	1324577
+96264	27821	1
+49666	38303	1
+580	48610	3
+102772	33098	2
+Time Spent in migrate_misplaced_folio: 5369163130
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.196897548s Out of 211.26886776299216s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.249831299996
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+55215	4623017	1
+100704	671592	2
+2629	61928	3
+106044	924775247	359
+Time Spent in task_numa_work: 930131784
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	82704	4
+100704	18880	1
+55215	77534	5
+98494	20817	1
+106044	4876843100	1249929
+580	93348	4
+Time Spent in migrate_misplaced_folio: 4877136383
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.807268167s Out of 211.249831299996s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.25874948798446
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106096	910953226	186
+2629	89911	4
+2335	283007	1
+Time Spent in task_numa_work: 911326144
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	63457	3
+2335	1703887	330
+106096	6264009924	1939225
+55215	123005	6
+Time Spent in migrate_misplaced_folio: 6265900273
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.177226417s Out of 212.25874948798446s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.2612872919999
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+102617	973099	1
+997	289033	5
+2629	61897	3
+106151	999832875	145
+Time Spent in task_numa_work: 1001156904
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+55215	122226	6
+106151	5828373541	1414645
+580	86825	5
+997	34651	2
+2556	56367	1
+2335	150890	6
+102772	128096	14
+Time Spent in migrate_misplaced_folio: 5828952596
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.8301095s Out of 211.2612872919999s
+
+ITERATION 6 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.25462812097976
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106218	897679585	369
+2629	39047	2
+Time Spent in task_numa_work: 897718632
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	94951	6
+106218	4798560490	1178949
+2335	138832	7
+Time Spent in migrate_misplaced_folio: 4798794273
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.696512905s Out of 210.25462812097976s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 6
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26435335795395
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106271	697994584	1340
+2629	88961	4
+Time Spent in task_numa_work: 698083545
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+106271	4242908728	1045962
+2335	161591	8
+580	32021	1
+Time Spent in migrate_misplaced_folio: 4243102340
+
+TOTAL OVERHEAD OF NUMA BALANCING: 4.941185885s Out of 210.26435335795395s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.25954650796484
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+100701	1351753	1
+2629	55040	3
+106314	818909033	792
+98494	1080298	1
+100704	275512	1
+Time Spent in task_numa_work: 821671636
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+100704	11861	1
+55215	22227	1
+100701	22261	1
+106314	5660662568	1380029
+2335	133239	8
+49666	47920	3
+580	20066	1
+98494	63592	3
+Time Spent in migrate_misplaced_folio: 5660983734
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.48265537s Out of 211.25954650796484s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26689882198116
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+101291	3524014	1
+2629	52112	3
+106365	853685594	327
+Time Spent in task_numa_work: 857261720
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	21128	1
+2335	146316	6
+101291	14729	1
+106365	5314467881	1297433
+Time Spent in migrate_misplaced_folio: 5314650054
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.171911774s Out of 210.26689882198116s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.24878670100588
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106409	843610704	207
+2629	56524	3
+Time Spent in task_numa_work: 843667228
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	21889	1
+2335	113344	5
+106409	5145111113	1289664
+Time Spent in migrate_misplaced_folio: 5145246346
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.988913574s Out of 210.24878670100588s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.2643700710032
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106451	1000737375	155
+2629	40419	2
+Time Spent in task_numa_work: 1000777794
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+49666	158459	25
+106451	5823125487	1416861
+2335	148811	7
+Time Spent in migrate_misplaced_folio: 5823432757
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.824210551s Out of 211.2643700710032s
+
+ITERATION 7 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.25996065099025
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+96264	3861742	1
+102617	696377	1
+106500	887695712	388
+2629	57163	3
+Time Spent in task_numa_work: 892310994
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+106500	4618503821	1117399
+2335	82446	3
+580	18405	1
+Time Spent in migrate_misplaced_folio: 4618604672
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.510915666s Out of 210.25996065099025s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 7
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26363325997954
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106546	729618992	1492
+2629	53663	3
+Time Spent in task_numa_work: 729672655
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+98494	22682	1
+106546	4963297071	1206599
+2335	182070	8
+Time Spent in migrate_misplaced_folio: 4963501823
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.693174478s Out of 210.26363325997954s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26772254897514
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2556	853821	1
+2629	54444	3
+102772	791928	1
+106594	812242246	840
+Time Spent in task_numa_work: 813942439
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+106594	4925770141	1199245
+102772	17971	1
+2335	27157	1
+580	23129	1
+2556	13975	1
+Time Spent in migrate_misplaced_folio: 4925852373
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.739794812s Out of 211.26772254897514s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.26138405600796
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	64517	3
+106642	883466875	361
+Time Spent in task_numa_work: 883531392
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+2556	22525	1
+106642	5065707119	1229444
+102772	21317	1
+580	22875	1
+Time Spent in migrate_misplaced_folio: 5065773836
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.949305228s Out of 210.26138405600796s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2635751159978
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2335	198983	1
+2629	58914	3
+106690	964126363	200
+Time Spent in task_numa_work: 964384260
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	23420	1
+2556	31984	1
+2335	141358	6
+106690	5265669229	1284805
+Time Spent in migrate_misplaced_folio: 5265865991
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.230250251s Out of 210.2635751159978s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.2664433660102
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106740	984032241	195
+2629	57846	3
+Time Spent in task_numa_work: 984090087
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+2335	93804	4
+580	86291	4
+106740	5748809482	1400454
+Time Spent in migrate_misplaced_folio: 5748989577
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.733079664s Out of 211.2664433660102s
+
+ITERATION 8 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2569391669822
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+106809	897477082	392
+100704	295324	1
+2629	61165	3
+Time Spent in task_numa_work: 897833571
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+106809	4570963097	1126035
+2335	193200	16
+580	62374	3
+100704	44953	2
+Time Spent in migrate_misplaced_folio: 4571263624
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.469097195s Out of 210.2569391669822s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 8
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 209.2569483689731
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+98494	869174	1
+106861	663664473	1352
+2629	61638	3
+Time Spent in task_numa_work: 664595285
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+98494	42241	2
+106861	4285938936	1046842
+2335	56761	2
+580	45140	2
+Time Spent in migrate_misplaced_folio: 4286083078
+
+TOTAL OVERHEAD OF NUMA BALANCING: 4.950678363s Out of 209.2569483689731s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2518756899517
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	61382	3
+106911	815685510	665
+102617	1413162	2
+Time Spent in task_numa_work: 817160054
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	17973	1
+106911	4890380462	1192342
+102617	629623	97
+102772	169305	18
+2335	148932	8
+98494	40447	1
+Time Spent in migrate_misplaced_folio: 4891386742
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.708546796s Out of 210.2518756899517s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.24985782499425
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+100704	388051	1
+2629	59589	3
+580	1092126	1
+106962	776425007	365
+49666	4766821	1
+Time Spent in task_numa_work: 782731594
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+106962	6362461688	1951039
+102772	19710	1
+102617	1574426	282
+2335	109085	5
+49666	16834	1
+100704	23283	1
+580	249353	15
+Time Spent in migrate_misplaced_folio: 6364454379
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.147185973s Out of 212.24985782499425s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.258458575001
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+102617	1168231	1
+2629	66795	3
+107022	946004996	209
+Time Spent in task_numa_work: 947240022
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+107022	4955611801	1202434
+580	23216	1
+2335	16102	1
+102617	388713	50
+Time Spent in migrate_misplaced_folio: 4956039832
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.903279854s Out of 210.258458575001s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.25804294500267
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+101291	2218241	1
+107073	912630340	176
+2629	62075	3
+Time Spent in task_numa_work: 914910656
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+102617	306402	48
+2335	281512	17
+107073	6534852182	1937854
+102772	48023	3
+580	59508	2
+Time Spent in migrate_misplaced_folio: 6535547627
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.450458283s Out of 211.25804294500267s
+
+ITERATION 9 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.2633402029751
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+55215	6018750	1
+107128	1030424141	486
+2629	52230	3
+96264	4855938	1
+Time Spent in task_numa_work: 1041351059
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+96264	661513	164
+102617	23180	1
+580	51666	3
+2335	68589	4
+107128	5673079274	1541231
+55215	23116	1
+Time Spent in migrate_misplaced_folio: 5673907338
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.715258397s Out of 212.2633402029751s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 9
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.26577144599287
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	77162	4
+98494	942549	1
+101291	363836	1
+107180	615041871	1312
+Time Spent in task_numa_work: 616425418
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+107180	6314542319	1958624
+2335	54999	2
+101291	29117	1
+580	54368	2
+98494	903632	177
+Time Spent in migrate_misplaced_folio: 6315584435
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.932009853s Out of 212.26577144599287s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.26190511597088
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	62820	3
+107235	759060881	738
+102617	919220	1
+Time Spent in task_numa_work: 760042921
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+102617	197604	19
+107235	6392187624	1966565
+580	19768	1
+Time Spent in migrate_misplaced_folio: 6392404996
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.152447917s Out of 212.26190511597088s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26443396997638
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+107290	976339390	453
+102617	158698	1
+2629	56978	3
+Time Spent in task_numa_work: 976555066
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+102617	1067052	208
+580	46015	2
+107290	5419232978	1314757
+102772	9558	1
+Time Spent in migrate_misplaced_folio: 5420355603
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.396910669s Out of 211.26443396997638s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.25284968601773
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	58739	3
+100704	290033	1
+107341	907831958	235
+2335	47408	1
+Time Spent in task_numa_work: 908228138
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+107341	5391723464	1323907
+580	14841	1
+100704	46982	2
+102617	23654	1
+2335	20313	1
+Time Spent in migrate_misplaced_folio: 5391829254
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.300057392s Out of 210.25284968601773s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.27041853801347
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+102772	1032632	1
+2629	49026	3
+107394	935048491	174
+Time Spent in task_numa_work: 936130149
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+102772	64496	3
+98494	25257	1
+107394	5182366410	1298475
+580	171937	11
+Time Spent in migrate_misplaced_folio: 5182628100
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.118758249s Out of 210.27041853801347s
+
+ITERATION 10 FOR 657.xz_s
+TEST: BASELINE
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.25974659901112
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+2629	78969	3
+102617	4817	1
+107452	869932206	374
+Time Spent in task_numa_work: 870015992
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	71252	3
+107452	5152993488	1248552
+102617	101082	4
+96264	38866	7
+102772	253133	36
+Time Spent in migrate_misplaced_folio: 5153457821
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.023473813s Out of 210.25974659901112s
+
+TEST: SYSCTL_NUMA_BALANCING_SCAN_SIZE - Iteration 10
+64
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26392171601765
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+107504	686323058	1182
+2629	54440	3
+101291	738188	1
+98494	618421	1
+Time Spent in task_numa_work: 687734107
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+101291	32509	2
+580	24449	1
+98494	970714	153
+107504	5230433213	1365658
+102772	23531	1
+Time Spent in migrate_misplaced_folio: 5231484416
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.919218523s Out of 211.26392171601765s
+
+128
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.2544858859619
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+107555	821688739	716
+102630	2767504	1
+2629	58273	3
+Time Spent in task_numa_work: 824514516
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+102630	2333921	416
+580	18010	1
+101291	15240	1
+98494	83948	4
+107555	4934152024	1210064
+2335	30431	1
+Time Spent in migrate_misplaced_folio: 4936633574
+
+TOTAL OVERHEAD OF NUMA BALANCING: 5.76114809s Out of 210.2544858859619s
+
+256
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 210.263590396964
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+102617	1264577	1
+107612	869073100	351
+2629	55647	3
+Time Spent in task_numa_work: 870393324
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+580	49794	3
+102617	98324	5
+107612	5162817978	1252430
+102772	24358	1
+100704	21144	1
+2556	22191	1
+Time Spent in migrate_misplaced_folio: 5163033789
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.033427113s Out of 210.263590396964s
+
+512
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 212.2544106169953
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+101291	186954	1
+107662	951197050	204
+100704	361360	1
+2629	63685	3
+Time Spent in task_numa_work: 951809049
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+107662	6427691459	1959013
+580	99472	5
+101291	13830	1
+102772	32723	3
+100704	59414	2
+Time Spent in migrate_misplaced_folio: 6427896898
+
+TOTAL OVERHEAD OF NUMA BALANCING: 7.379705947s Out of 212.2544106169953s
+
+1024
+SPEC CPU XZ driver: input=cpu2006docs.tar.xz insize=6643
+Loading Input Data
+Compressed size: 1287176; Uncompressed size: 9041920
+SHA-512 of decompressed data compared successfully!
+SHA-512 of input file: 5eec56e04269bcb81dd120f2f81299e973341e4a2579c146ccea7af4a74fbf7049966dd7fb91d6fbecfa2238d096a6ead91379e4a0c9bf11d5ec7d0472f369bf
+Input data 6965690368 bytes in length
+Compressing Input Data, level 4
+Compressed data is between 1036078272 and 1111795472 bytes in length
+Finished compressing data
+Uncompressing previously compressed data
+Uncompressed data 6965690368 bytes in length
+Uncompressed data compared correctly
+Tested 6643 MiB buffer: OK!
+Elapsed Time: 211.26007652597036
+
+task_numa_work Statistics
+PID	Total Time (ns)	Invocation Count
+107729	1032459015	165
+2629	57866	3
+Time Spent in task_numa_work: 1032516881
+
+migrate_misplaced_folio Statistics
+PID	Total Time (ns)	Invocation Count
+102617	37093	2
+107729	5600868783	1384947
+96264	24627	1
+580	78370	3
+98494	30520	1
+Time Spent in migrate_misplaced_folio: 5601039393
+
+TOTAL OVERHEAD OF NUMA BALANCING: 6.633556274s Out of 211.26007652597036s
+
