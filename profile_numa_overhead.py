@@ -160,6 +160,7 @@ def main():
     executable_path = sys.argv[2]
     args = sys.argv[3:]
 
+    print(f"BENCH: {bench} EXE_PATH: {executable_path} ARGS: {args}\n")
     start_time = time.perf_counter()
     # Start the executable with arguments
     process, main_pid = run_executable(executable_path, args)
